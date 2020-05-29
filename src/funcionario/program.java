@@ -10,9 +10,9 @@ public class program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		String nome;
-		int horaTrabalhadas, opcao, totalHoras = 0;
-		double valorHora, custoTotal = 0;
+		String nome, rico = null, nomeAnterior = null;
+		int horaTrabalhadas, opcao, totalHoras = 0, contFuncionario = 0;
+		double valorHora, custoTotal = 0, salario, salarioAnterior = 0;
 		char repetir = 0;
 
 		while (repetir != 'n' && repetir != 'N') {
@@ -34,7 +34,20 @@ public class program {
 			repetir = sc.next().charAt(0);
 			totalHoras = totalHoras + horaTrabalhadas;
 			custoTotal = custoTotal + horaTrabalhadas * valorHora;
-			
+			salario = horaTrabalhadas * valorHora;
+			contFuncionario = contFuncionario + 1;
+			if (contFuncionario == 1){
+				salarioAnterior = salario;
+				nomeAnterior = nome;
+				rico = nome;				
+			}
+			else if (salario > salarioAnterior){
+						salarioAnterior = salario;	
+						rico = nome;
+			}
+			else {
+				rico = nomeAnterior;
+			}
 		}
 
 		do {
@@ -52,7 +65,12 @@ public class program {
 				System.out.printf("Total de horas = %d%n", totalHoras);
 			}
 			else if (opcao == 2) {
-				System.out.printf("Custo total = %.2f%n", custoTotal);
+				System.out.printf("Custo total = R$ %.2f%n", custoTotal);
+			}
+			else if (opcao == 3) {
+				System.out.println("Pessoa que ganhou mais = " + rico);
+			}
+			else {
 			}
 
 		} while (opcao != 4);
