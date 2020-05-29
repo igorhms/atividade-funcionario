@@ -11,8 +11,8 @@ public class program {
 		Scanner sc = new Scanner(System.in);
 
 		String nome;
-		int horaTrabalhadas, opcao;
-		double valorHora;
+		int horaTrabalhadas, opcao, totalHoras = 0;
+		double valorHora, custoTotal = 0;
 		char repetir = 0;
 
 		while (repetir != 'n' && repetir != 'N') {
@@ -32,17 +32,28 @@ public class program {
 			}
 			System.out.print("Digitar outro (S/N)? ");
 			repetir = sc.next().charAt(0);
+			totalHoras = totalHoras + horaTrabalhadas;
+			custoTotal = custoTotal + horaTrabalhadas * valorHora;
+			
 		}
 
 		do {
-		System.out.println();
-		System.out.println("MENU");
-		System.out.println("1 - Total de horas trabalhadas");
-		System.out.println("2 - Custo total");
-		System.out.println("3 - Nome da pessoa que ganhou mais");
-		System.out.println("4 - Sair");
-		System.out.print("Digite uma opção: ");
-		opcao = sc.nextInt();
+			System.out.println();
+			System.out.println("MENU");
+			System.out.println("1 - Total de horas trabalhadas");
+			System.out.println("2 - Custo total");
+			System.out.println("3 - Nome da pessoa que ganhou mais");
+			System.out.println("4 - Sair");
+			System.out.print("Digite uma opção: ");
+			opcao = sc.nextInt();
+			System.out.println();
+			
+			if (opcao == 1){
+				System.out.printf("Total de horas = %d%n", totalHoras);
+			}
+			else if (opcao == 2) {
+				System.out.printf("Custo total = %.2f%n", custoTotal);
+			}
 
 		} while (opcao != 4);
 
